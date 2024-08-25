@@ -48,7 +48,7 @@ def main():
     st.sidebar.write("1. Upload an image.\n2. Wait for the prediction.\n3. See the results below.")
     
     # Load the ONNX model
-    model_path = r"C:\Users\mitta\OneDrive\Desktop\Kidney_App\best.onnx"  # Update with your model's path
+    model_path = r"best.onnx"  # Update with your model's path
     session = ort.InferenceSession(model_path)
     input_name = session.get_inputs()[0].name
 

@@ -3,8 +3,6 @@ onnx
 onnxruntime
 opencv-contrib-python
 opencv-python-headless
-libgl1-mesa-glx
-libglib2.0-0
 pillow
 numpy
 pandas

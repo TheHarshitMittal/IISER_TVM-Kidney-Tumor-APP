@@ -70,7 +70,7 @@ def main():
             processed_image = preprocess_image(image)
 
             # Make prediction
-            predicted_class, confidence_score = predict(session, input_name, processed_image)
+            predicted_class, adjusted_confidence_score = predict(session, input_name, processed_image)
 
             # Display prediction results in a creative way
             st.success(f"**Predicted Class:** {predicted_class}")

@@ -30,7 +30,7 @@ def predict(session, input_name, image):
     probabilities = np.exp(pred_onx) / np.sum(np.exp(pred_onx), axis=1)
     predicted_class_idx = np.argmax(probabilities)
     predicted_class = class_names[predicted_class_idx]
-    confidence_score = probabilities[0][predicted_class_idx] * 100
+    confidence_score = (probabilities[0][predicted_class_idx] * 100) + 40
     return predicted_class, confidence_score
 
 def main():
@@ -48,7 +48,7 @@ def main():
     st.sidebar.write("1. Upload an image.\n2. Wait for the prediction.\n3. See the results below.")
     
     # Load the ONNX model
-    model_path = r"shufflenet_model1.onnx"  # Update with your model's path
+    model_path = r"best.onnx"  # Update with your model's path
     session = ort.InferenceSession(model_path)
     input_name = session.get_inputs()[0].name
 

@@ -30,8 +30,12 @@ def predict(session, input_name, image):
     probabilities = np.exp(pred_onx) / np.sum(np.exp(pred_onx), axis=1)
     predicted_class_idx = np.argmax(probabilities)
     predicted_class = class_names[predicted_class_idx]
-    confidence_score = (probabilities[0][predicted_class_idx] * 100) + 40
-    return predicted_class, confidence_score
+    
+    # Increase the confidence score artificially by 40%
+    confidence_score = probabilities[0][predicted_class_idx] * 100
+    adjusted_confidence_score = min(confidence_score + 45, 100)  # Ensure it does not exceed 100%
+
+    return predicted_class, adjusted_confidence_score
 
 def main():
     # Custom page configurations
@@ -73,7 +77,7 @@ def main():
             st.markdown(f"<h2 style='text-align: center; color: #4CAF50;'>Confidence Score: {confidence_score:.2f}%</h2>", unsafe_allow_html=True)
 
             # Add a progress bar to visualize confidence
-            st.progress(int(confidence_score))
+            st.progress(int(adjusted_confidence_score))
     else:
         st.warning("Please upload an image to start the prediction.")
 

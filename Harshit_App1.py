@@ -70,14 +70,14 @@ def main():
             processed_image = preprocess_image(image)
 
             # Make prediction
-            predicted_class, adjusted_confidence_score = predict(session, input_name, processed_image)
+            predicted_class, confidence_score = predict(session, input_name, processed_image)
 
             # Display prediction results in a creative way
             st.success(f"**Predicted Class:** {predicted_class}")
             st.markdown(f"<h2 style='text-align: center; color: #4CAF50;'>Confidence Score: {confidence_score:.2f}%</h2>", unsafe_allow_html=True)
 
             # Add a progress bar to visualize confidence
-            st.progress(int(adjusted_confidence_score))
+            st.progress(int(confidence_score))
     else:
         st.warning("Please upload an image to start the prediction.")
 
